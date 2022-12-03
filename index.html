@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-sacle=1.0" charset="utf-8">
+  <title>Vito Velo</title>
+  <link rel="icon" type="image/png" href="img/logo.png"/>  
+  <link href="style.css" rel="stylesheet">
+  <!-- Librairie CésiumJS -->
+  <script src="https://cesium.com/downloads/cesiumjs/releases/1.96/Build/Cesium/Cesium.js"></script>
+  <link href="https://cesium.com/downloads/cesiumjs/releases/1.96/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+  <!-- Librairei Turf.js -->
+  <script src='https://unpkg.com/@turf/turf@6/turf.min.js'></script>
+</head>
+<body>
+  <div class="container">
+    <div class="navbar">
+         <img src="img/vitovelo_blanc.png" class="logo">
+         <nav>
+          <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="">SANDBOX</a></li>
+            <!-- <li><a href="">MORE</a></li> -->
+          </ul>
+         </nav>
+         <img src="img/logo.png" class="menu-icon">
+    </div>
+    <div class="row">
+      <div class="col">
+        <h1>Vito's Tracks</h1>
+        <p>
+          Here's just a simple application to visualiz my garmin data on a 3D canvas. Datas are autommaticly scraped from the garmin connect app using python and sélénium. All data are stored in a PostgreSQL database also using python. A Flask API provides all tracks in json format to this visualisation app using CesiumJS.  
+        </p>
+        <button type="button" class="explore">Explore</button>
+      </div>
+      <div class="card-col">
+        <div class="shadow"></div>
+        <div id="numberActivities" class="number-activities">Nombre d'activités :</div>
+        <div class="wrapper">
+          <div class="cards" id="cards">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-row">
+          <div class="panel" id="panel">
+            <div class="panel-main">
+              <li class="panel-header">
+                <span></span>
+                <button class="open-close"><</button>
+              </li>
+              <ul>
+                <li class="nav-link">
+                  <a>
+                    <img class="panel-icon" src="img/icon/clock.png">
+                    <span id="clock"></span>
+                  </a>
+                </li>
+                <li class="nav-link">
+                  <a>
+                    <img class="panel-icon" src="img/icon/travel.png">
+                    <span id="travel"></span>
+                  </a>
+                </li>
+                <li class="nav-link">
+                  <a>
+                    <img class="panel-icon" src="img/icon/up.png">
+                    <span id="up"></span>
+                  </a>
+                </li>
+                <li class="nav-link">
+                  <a>
+                    <img class="panel-icon" src="img/icon/down.png">
+                    <span id="down"></span>
+                  </a>
+                </li>
+                <li class="nav-link">
+                  <a>
+                    <img class="panel-icon" src="img/icon/heart.png">
+                    <span id="heart"></span>
+                  </a>
+                </li>
+                <li class="nav-link">
+                  <a>
+                    <img class="panel-icon" src="img/icon/heart-max.png">
+                    <span id="heart-max"></span>
+                  </a>
+                </li>
+                <li class="nav-link">
+                  <a>
+                    <img class="panel-icon" src="img/icon/kcal.png">
+                    <span id="kcal"></span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="bottom">
+              <li class="panel-footer">
+                <span></span>
+                <button class="profil" id="get-profil">Profil</button>
+              </li>
+            </div>
+          </div>
+        <div class="modal-col-right">
+          <div id="cesiumContainer"></div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
