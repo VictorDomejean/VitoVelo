@@ -10,6 +10,9 @@
   <link href="https://cesium.com/downloads/cesiumjs/releases/1.96/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
   <!-- Librairei Turf.js -->
   <script src='https://unpkg.com/@turf/turf@6/turf.min.js'></script>
+  <!-- Librairie Chart JS -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 </head>
 <body>
   <div class="container">
@@ -103,7 +106,11 @@
             </div>
           </div>
         <div class="modal-col-right">
+          <input type="file" id="import-input" accept=".gpx">
           <div id="cesiumContainer"></div>
+          <div id="profil-panel">
+              <canvas id="profil-chart"></canvas>
+          </div>
         </div>
         </div>
       </div>

@@ -198,6 +198,51 @@ def get_startstop():
     finally:
         cursor.close() 
         conn.close()
+    
+@app.route('/profil') 
+def get_profil():
+
+    id = request.args.get('id')
+    try:
+        
+        print("ID", id)
+        conn = psycopg2.connect("dbname={} user={} password={}".format('gc_data', 'postgres', 'admin'))
+        cursor = conn.cursor()
+
+        if id:
+            print(id)
+            
+            cursor.execute("""
+                SELECT 
+                json_build_object(
+                    'time',         time,
+                    'ele',         ele
+                )
+                
+                FROM (
+                SELECT time, ele
+                FROM gc.track_points
+                WHERE activity_id = %s
+                ORDER BY time ASC
+                ) as elevation
+            """, (id,))
+
+            row = cursor.fetchall()
+            resp = jsonify(row)
+            
+            return resp
+        
+        else:
+            resp = jsonify('User "id" not found in query string')
+            resp.status_code = 500
+            return resp
+
+    except Exception as e:
+        print(e)
+    
+    finally:
+        cursor.close() 
+        conn.close()
 
 
 if __name__ == "__main__":
